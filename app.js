@@ -80,7 +80,7 @@ function setCorrectBox(){
         box.nextSibling.classList.toggle('hidden');
         window.setTimeout(function(){
           box.classList.add('correct');
-        }, 1000)
+        }, 400)
         box.style.background = '#77fd77';
       }
     })
@@ -90,9 +90,11 @@ function resetBoxes(){
     boxes.forEach(function(box){
       if(box.classList.contains(boxIndexes[0]) || box.classList.contains(boxIndexes[1])){
         window.setTimeout(function(){
+          box.nextSibling.classList.toggle('hidden');
           box.classList.toggle('shake');
         }, 500);  //hideafter a second
         window.setTimeout(function(){
+          box.nextSibling.classList.toggle('hidden');
           box.classList.toggle('hidden');
           box.classList.toggle('shake');
         }, 1000);  //hideafter a second
