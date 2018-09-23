@@ -18,11 +18,17 @@ const resetButton = document.querySelector('#resetButton');
 const pointCounter = document.querySelector('#pointCounter');
 const guessCounter = document.querySelector('#guessCounter');
 
+//timer
+let seconds = 0;
+let minutes = 0;
+
 let points = 0;
 let guesses = 0;
 let choices = [];
 let boxIndexes = [];
 flipCard();
+
+timer();
 
 //GAME LOGIC
 
@@ -71,7 +77,7 @@ function checkMatch(){
 function setCorrectBox(){
     boxes.forEach(function(box){
       if(box.classList.contains(boxIndexes[0]) || box.classList.contains(boxIndexes[1])){
-        box.classList.add('correct');
+        box.style.background = '#77fd77';
       }
     })
 }
@@ -89,6 +95,8 @@ function resetBoxes(){
 
 function checkIfWin(){
   if(points === SIZE_OF_GRID/2){
+    win = document.querySelector('.win');
+    win.classList.toggle('hidden')
     console.log('WINNER!')
   }
 }
@@ -145,10 +153,33 @@ function resetGame(){
   addIcons();
   flipCard();
 
+  seconds = 0;
+  minutes = 0;
   points = 0;
   guesses = 0;
   choices = [];
   boxIndexes = [];
   pointCounter.textContent = points;
   guessCounter.textContent = guesses;
+}
+
+//TIMER
+function timer(){
+  let Seconds = document.querySelector('#seconds');
+  let Minutes = document.querySelector('#minutes');
+  setInterval(function(){
+    seconds ++
+    if(seconds == 60){
+      seconds = 0;
+      minutes += 1;
+    }
+    if(seconds < 10){
+      Seconds.textContent= '0'+seconds;
+    }else{
+      Seconds.textContent = seconds;
+      Minutes.textContent = minutes;
+    }
+
+  },1000)
+
 }
