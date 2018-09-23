@@ -1,8 +1,20 @@
+body{
+  background: black;
+  color: white;
+}
+
+h3 h2{
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}
 #grid{
   width: 500px;
   height: 500px;
+  color: black;
   margin: auto;
-  background-color: blue;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
   display: flex;
   flex-wrap: wrap;
   border-radius: 10px;
@@ -49,6 +61,14 @@
   transition: 1s ease-in-out;
 }
 
-.correct{
-  background-color: green;
+.win{
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  display: inline-block;
+  z-index: 3;
+}
+
+.gameInfo{
+  text-align: center;
 }
