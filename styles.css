@@ -101,7 +101,7 @@ background: linear-gradient(bottom right, #7571A5, #2BA7D4);  display: flex;
 #winScreen{
   background: #efefef;
   position:absolute;
-  opacity: 0.95;
+  opacity: 1.0;
   top: 0;
   left: 0;
   width: 100vw;

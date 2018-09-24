@@ -14,9 +14,12 @@ addIcons();
 const resetButton = document.querySelector('#resetButton');
 
 
-//Points and Guesses DOM
-const pointCounter = document.querySelector('#pointCounter');
+//Guesses DOM
 const guessCounter = document.querySelector('#guessCounter');
+
+//Win Screen
+const winScreen = document.querySelector('#winScreen');
+
 
 //timer
 let seconds = 0;
@@ -56,7 +59,6 @@ function checkMatch(){
       console.log('MATCH')
       points ++;
       guesses ++;
-      pointCounter.textContent = points;
       guessCounter.textContent = guesses;
       console.log('points= '+ points);
       console.log('guesses= '+ guesses);
@@ -107,7 +109,7 @@ function resetBoxes(){
 
 function checkIfWin(){
   if(points === SIZE_OF_GRID/2){
-    winScreen();
+    addWinScreen();
   }
 }
 
@@ -160,7 +162,6 @@ function resetGame(){
   buildGrid(SIZE_OF_GRID);
   addIcons();
   flipCard();
-  timer();
 
   seconds = 0;
   minutes = 0;
@@ -168,8 +169,11 @@ function resetGame(){
   guesses = 0;
   choices = [];
   boxIndexes = [];
-  pointCounter.textContent = points;
   guessCounter.textContent = guesses;
+
+  if(!winScreen.classList.contains('hidden')){
+    winScreen.classList.add('hidden')
+  }
 }
 
 //TIMER
@@ -177,7 +181,7 @@ function timer(){
   let Seconds = document.querySelector('#seconds');
   let Minutes = document.querySelector('#minutes');
   let winScreen = document.querySelector('#winScreen');
-  let timer = setInterval(function(){
+  let clock = setInterval(function(){
     seconds ++
     if(seconds == 60){
       seconds = 0;
@@ -189,15 +193,11 @@ function timer(){
       Seconds.textContent = seconds;
       Minutes.textContent = minutes;
     }
-    if(!winScreen.classList.contains('hidden')){
-      clearInterval(timer);
-    }
-  },1000)
-
+    },1000)
 }
 
 //Win page
-function winScreen(){
+function addWinScreen(){
   winScreenAppear();
   setWinTime();
   playAgain();
@@ -205,7 +205,6 @@ function winScreen(){
 }
 
 function winScreenAppear(){
-  let winScreen = document.querySelector('#winScreen');
   winScreen.classList.toggle('hidden');
 }
 
@@ -214,21 +213,20 @@ function setWinTime(){
   let Minutes = document.querySelector('#minutes');
   let winSeconds = document.querySelector('.winSeconds');
   let winMinutes = document.querySelector('.winMinutes');
-  winSeconds.textContent = Seconds.textContent;
-  winMinutes.textContent = Minutes.textContent;
+  winSeconds.textContent = seconds;
+  winMinutes.textContent = minutes;
 }
 
 function playAgain(){
-  let playAgainBtn = document.querySelector('.playAgainBtn');
-  playAgainBtn.addEventListener('click', function(){
-    resetGame();
-    winScreenAppear();
+   let playAgainBtn = document.querySelector('.playAgainBtn');
+   playAgainBtn.addEventListener('click', function(){
+   resetGame();
   })
 }
 
 function setStars(){
   let stars = document.querySelector('.stars');
-  stars.innerHTML+='';
+  stars.innerHTML='';
   let amount = 3;
   if(guesses < 12){
     let amount = 3;
