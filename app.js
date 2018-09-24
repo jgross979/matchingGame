@@ -121,6 +121,7 @@ function buildGrid(size){
   }
 }
 
+//Creates an array with 1122334455667788
 function createArray(num){
   let array = [];
   for(let i = 1; i <= num; i++){
@@ -131,6 +132,7 @@ function createArray(num){
   return array;
 }
 
+//Jumbles the array
 function randomizeArray(arr){
   let newArr= [];
   for(let i = 0; i < arr.length; i++){
@@ -140,6 +142,7 @@ function randomizeArray(arr){
   return newArr;
 }
 
+//Places icons based on jumbled array
 function addIcons(){
   let randomArray = randomizeArray(createArray(8));
   boxes = document.querySelectorAll('.side');
