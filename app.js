@@ -30,6 +30,7 @@ flipCard();
 
 timer();
 
+
 //GAME LOGIC
 
 function flipCard(){
@@ -106,11 +107,12 @@ function resetBoxes(){
 
 function checkIfWin(){
   if(points === SIZE_OF_GRID/2){
-    win = document.querySelector('.win');
-    win.classList.toggle('hidden')
-    console.log('WINNER!')
+    winScreen();
   }
 }
+
+//STARS
+
 
 
 //BUILD GRID
@@ -158,6 +160,7 @@ function resetGame(){
   buildGrid(SIZE_OF_GRID);
   addIcons();
   flipCard();
+  timer();
 
   seconds = 0;
   minutes = 0;
@@ -173,7 +176,8 @@ function resetGame(){
 function timer(){
   let Seconds = document.querySelector('#seconds');
   let Minutes = document.querySelector('#minutes');
-  setInterval(function(){
+  let winScreen = document.querySelector('#winScreen');
+  let timer = setInterval(function(){
     seconds ++
     if(seconds == 60){
       seconds = 0;
@@ -185,7 +189,55 @@ function timer(){
       Seconds.textContent = seconds;
       Minutes.textContent = minutes;
     }
-
+    if(!winScreen.classList.contains('hidden')){
+      clearInterval(timer);
+    }
   },1000)
 
+}
+
+//Win page
+function winScreen(){
+  winScreenAppear();
+  setWinTime();
+  playAgain();
+  setStars();
+}
+
+function winScreenAppear(){
+  let winScreen = document.querySelector('#winScreen');
+  winScreen.classList.toggle('hidden');
+}
+
+function setWinTime(){
+  let Seconds = document.querySelector('#seconds');
+  let Minutes = document.querySelector('#minutes');
+  let winSeconds = document.querySelector('.winSeconds');
+  let winMinutes = document.querySelector('.winMinutes');
+  winSeconds.textContent = Seconds.textContent;
+  winMinutes.textContent = Minutes.textContent;
+}
+
+function playAgain(){
+  let playAgainBtn = document.querySelector('.playAgainBtn');
+  playAgainBtn.addEventListener('click', function(){
+    resetGame();
+    winScreenAppear();
+  })
+}
+
+function setStars(){
+  let stars = document.querySelector('.stars');
+  stars.innerHTML+='';
+  let amount = 3;
+  if(guesses < 12){
+    let amount = 3;
+  }else if (guesses >=12 && guesses < 20) {
+    amount = 2;
+  }else{
+    amount = 1;
+  }
+  for(i= 0; i < amount; i++){
+    stars.innerHTML+='<i class="fas fa-star"></i>';
+  }
 }

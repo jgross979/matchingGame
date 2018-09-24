@@ -1,12 +1,18 @@
 body{
-  background: white;
+  background: #efefef;
   color: black;
+  font-family: 'Oswald', sans-serif;
 }
 
 h3 h2{
   display: inline-block;
   width: 100px;
   text-align: center;
+}
+
+#gameContainer{
+  height: 100vh;
+  width: 100vw;
 }
 #grid{
   width: 500px;
@@ -79,6 +85,31 @@ background: linear-gradient(bottom right, #7571A5, #2BA7D4);  display: flex;
 .gameInfo{
   text-align: center;
 }
+
+#winScreen{
+  background: #efefef;
+  position:absolute;
+  opacity: 0.95;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 4;
+}
+
+.winScreenInfo{
+  text-align: center;
+  position: relative;
+  top: 35%;
+}
+
+.stars{
+  font-size: 2em;
+  color: yellow;
+  text-shadow: black 2px 2px 9px;
+}
+
+
 
 /* ANIMATION */
 .shake {
