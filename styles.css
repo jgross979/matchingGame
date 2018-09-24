@@ -92,6 +92,7 @@ background: linear-gradient(bottom right, #7571A5, #2BA7D4);  display: flex;
 }
 
 #resetButton{
+  cursor: pointer;
   font-size: 1.4em;
   margin-top: 10px;
   border-radius: 6px;
@@ -113,6 +114,14 @@ background: linear-gradient(bottom right, #7571A5, #2BA7D4);  display: flex;
   text-align: center;
   position: relative;
   top: 35%;
+}
+
+.playAgainBtn{
+  cursor: pointer;
+  font-size: 1.4em;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: solid grey 2px;
 }
 
 .stars{

@@ -10,13 +10,10 @@ const icons = ["anchor","bomb","bolt",
 let boxes = document.querySelectorAll('.side');
 addIcons();
 
-//resetButton
+//Reset Button
 const resetButton = document.querySelector('#resetButton');
-
-
 //Guesses DOM
 const guessCounter = document.querySelector('#guessCounter');
-
 //Win Screen
 const winScreen = document.querySelector('#winScreen');
 
@@ -25,12 +22,14 @@ const winScreen = document.querySelector('#winScreen');
 let seconds = 0;
 let minutes = 0;
 
+//Game variables
 let points = 0;
 let guesses = 0;
 let choices = [];
 let boxIndexes = [];
-flipCard();
 
+//initialize game logic
+flipCard();
 timer();
 
 
@@ -56,18 +55,14 @@ function checkNotFlipped(box){
 function checkMatch(){
   if(choices.length === 2){
     if(choices[0] == choices[1]){
-      console.log('MATCH')
       points ++;
       guesses ++;
       guessCounter.textContent = guesses;
-      console.log('points= '+ points);
-      console.log('guesses= '+ guesses);
       choices = [];
       setCorrectBox();
       checkIfWin();
       boxIndexes = [];
     }else{
-      console.log('NOMATCH')
       guesses ++;
       guessCounter.textContent = guesses;
       choices = [];
