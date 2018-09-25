@@ -115,7 +115,7 @@ function resetBoxes(){
 
 function checkIfWin(){
   if(points === SIZE_OF_GRID/2){
-    addWinScreen();
+    setTimeout(addWinScreen, 1500);
   }
 }
 
