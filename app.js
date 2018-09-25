@@ -31,6 +31,7 @@ let boxIndexes = [];
 //initialize game logic
 flipCard();
 timer();
+setStars();
 
 
 //GAME LOGIC
@@ -55,21 +56,31 @@ function checkNotFlipped(box){
 function checkMatch(){
   if(choices.length === 2){
     if(choices[0] == choices[1]){
-      points ++;
-      guesses ++;
-      guessCounter.textContent = guesses;
-      choices = [];
-      setCorrectBox();
-      checkIfWin();
-      boxIndexes = [];
+      correctGuess();
     }else{
-      guesses ++;
-      guessCounter.textContent = guesses;
-      choices = [];
-      resetBoxes();
-      boxIndexes = [];
+      incorrectGuess();
     }
   }
+}
+
+function correctGuess(){
+  points ++;
+  guesses ++;
+  guessCounter.textContent = guesses;
+  choices = [];
+  setCorrectBox();
+  checkIfWin();
+  boxIndexes = [];
+  setStars();
+}
+
+function incorrectGuess(){
+  guesses ++;
+  guessCounter.textContent = guesses;
+  choices = [];
+  resetBoxes();
+  boxIndexes = [];
+  setStars();
 }
 
 function setCorrectBox(){
@@ -223,17 +234,19 @@ function playAgain(){
 }
 
 function setStars(){
-  let stars = document.querySelector('.stars');
-  stars.innerHTML='';
-  let amount = 3;
-  if(guesses < 12){
+  let stars = document.querySelectorAll('.stars');
+  stars.forEach(function(star){
+    star.innerHTML='';
     let amount = 3;
-  }else if (guesses >=12 && guesses < 20) {
-    amount = 2;
-  }else{
-    amount = 1;
-  }
-  for(i= 0; i < amount; i++){
-    stars.innerHTML+='<i class="fas fa-star"></i>';
-  }
+    if(guesses < 12){
+      let amount = 3;
+    }else if (guesses >=12 && guesses < 20) {
+      amount = 2;
+    }else{
+      amount = 1;
+    }
+    for(i= 0; i < amount; i++){
+      star.innerHTML+='<i class="fas fa-star"></i>';
+    }
+  })
 }
