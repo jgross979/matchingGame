@@ -159,7 +159,7 @@ h3 h2{
 @media screen and (max-width: 400px){
   #grid{
     width: 100vw;
-    height: 110vh;
+    height: 120vh;
   }
 
   .box-container{
